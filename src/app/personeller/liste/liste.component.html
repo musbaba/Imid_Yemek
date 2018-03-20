@@ -1,37 +1,45 @@
 <div class="example-container mat-elevation-z8">
+
+    <div class="example-header">
+        <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Sorgula">
+        </mat-form-field>
+      </div>
+
   <mat-table #table [dataSource]="dataSource">
-
-  <!--- Note that these columns can be defined in any order.
-    The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Adı -->
-  <ng-container matColumnDef="adi">
-  <mat-header-cell *matHeaderCellDef> Adı </mat-header-cell>
-  <mat-cell *matCellDef="let user"> {{user.adi}} </mat-cell>
-  </ng-container>
-
-  <!-- Soyadı -->
-  <ng-container matColumnDef="soyadi">
-  <mat-header-cell *matHeaderCellDef> Soyadı </mat-header-cell>
-  <mat-cell *matCellDef="let user"> {{user.soyadi}} </mat-cell>
-  </ng-container>
 
   <!-- Tc Kimlik No -->
   <ng-container matColumnDef="tcNo">
-  <mat-header-cell *matHeaderCellDef> TC Kimlik No </mat-header-cell>
-  <mat-cell *matCellDef="let user"> {{user.tcNo}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef> TC Kimlik No </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.tcNo}} </mat-cell>
+      </ng-container>
+
+      
+  <!-- Adı -->
+  <ng-container matColumnDef="kimlik">
+  <mat-header-cell *matHeaderCellDef> Adı Soyadı (Sicil No) </mat-header-cell>
+  <mat-cell *matCellDef="let user"> {{user.adi}} {{user.soyadi}} ({{user.sicilNo}}) </mat-cell>
   </ng-container>
+
+
 
 
   <!-- Weight Column -->
   <ng-container matColumnDef="sicilNo">
     <mat-header-cell *matHeaderCellDef> Sicil No </mat-header-cell>
     <mat-cell *matCellDef="let user"> {{user.sicilNo}} </mat-cell>
+  </ng-container>
+
+   <!-- Weight Column -->
+   <ng-container matColumnDef="butonlar">
+      <mat-header-cell *matHeaderCellDef> Kullanıcı Seç </mat-header-cell>
+      <mat-cell *matCellDef="let user">
+          <button mat-icon-button color="primary" ><i class="fas fa-users"></i></button>
+         </mat-cell>
     </ng-container>
 
 
-
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"  (click)="onRowClicked(row)"></mat-row>
 </mat-table>
 </div>

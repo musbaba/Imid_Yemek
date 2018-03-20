@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { AppConfig } from '../app.config';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -17,12 +17,36 @@ export class UsersService {
 
   getUsers(): Observable<User[]> {
 
-    console.log(this.userUrl);
       return this.http.get<User[]>(this.userUrl)
       .pipe(
-        tap(heroes => this.log(`fetched heroes`)),
+        tap(users => this.log(`fetched heroes`)),
         catchError(this.handleError('getUsers', []))
       );
+  }
+
+  findUserById(userId: number): Observable<User[]> {
+    //return this.http.get<User>(`/api/courses/${courseId}`);
+    return this.http.get<User[]>(this.userUrl+`${userId}`)
+      .pipe(
+        tap(users => this.log(`fetched heroes`)),
+        catchError(this.handleError('findUserById', []))
+      );
+  }
+
+  findUsers(
+    userId:number, filter = '', sortOrder = 'asc',
+    pageNumber = 0, pageSize = 3):  Observable<User[]> {
+
+    return this.http.get('/users', {
+        params: new HttpParams()
+            .set('userId', userId.toString())
+            .set('filter', filter)
+            .set('sortOrder', sortOrder)
+            .set('pageNumber', pageNumber.toString())
+            .set('pageSize', pageSize.toString())
+    }).pipe(
+        map(res =>  res["payload"])
+    );
   }
 
 

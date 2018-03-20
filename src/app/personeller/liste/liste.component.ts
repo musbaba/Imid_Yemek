@@ -1,29 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { User } from '../../models/users';
 import { UsersService } from '../../core/users.service';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-liste',
   templateUrl: './liste.component.html',
   styleUrls: ['./liste.component.scss']
 })
-export class ListeComponent implements OnInit {
+export class ListeComponent implements AfterViewInit  {
 
-  dataSource: User[];
-  displayedColumns = ['adi', 'soyadi', 'tcNo', 'sicilNo'];
+  displayedColumns = [  'tcNo','kimlik','butonlar'];
+  selection = new SelectionModel<Element>(true, []);
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  dataSource = new MatTableDataSource<User>();
+
+  constructor(private userService:UsersService) { }  
   
-  constructor(private userService:UsersService) { }
-  
-  
-  
-  ngOnInit() {
-    console.log('Merhaba');
-    this.getUsers();
+  onRowClicked(row) {
+    console.log('Row clicked: ', row);
   }
 
-  getUsers(): void{
-    this.userService.getUsers()
-    .subscribe(users=>this.dataSource=users);
-  }
+
+ngAfterViewInit() {
+  this.userService.getUsers().subscribe(data => {
+    this.dataSource.data = data;
+    console.log(this.dataSource.data);
+  });
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
+}
+
+applyFilter(filterValue: string) {
+  filterValue = filterValue.trim(); // Remove whitespace
+  filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+  this.dataSource.filter = filterValue;
+}
+ 
 
 }
