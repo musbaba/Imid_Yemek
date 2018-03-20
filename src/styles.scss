@@ -1,0 +1,82 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "./assets/scss/fontawesome/fontawesome";
+@import "./assets/scss/fontawesome/fa-regular";
+@import "./assets/scss/fontawesome/fa-solid";
+@import "./assets/scss/fontawesome/fa-brands";
+
+@import '~@angular/material/theming';
+
+// always include only once per project
+@include mat-core();
+
+:root {
+	--indigo-pink:#3f51b5;
+	--pink-bluegrey:#c2185b;
+	--deeppurple-amber:#673ab7;
+	--purple-green:#7b1fa2;
+}
+
+
+.accentColor{
+	color:var(--indigo-pink);
+}
+
+.pink-bluegrey{
+	$primary: mat-palette($mat-pink, 700, 500, 900);
+	$accent:  mat-palette($mat-blue-grey, A200, A100, A400);
+	$theme: mat-dark-theme($primary, $accent);
+	@include angular-material-theme($theme);
+	.accentColor{
+		color:var(--pink-bluegrey);
+	}
+}
+
+.deeppurple-amber{
+	$primary: mat-palette($mat-deep-purple);
+	$accent:  mat-palette($mat-amber, A200, A100, A400);
+	$theme: mat-light-theme($primary, $accent);
+	@include angular-material-theme($theme);
+	.accentColor{
+		color:var(--deeppurple-amber);
+	}
+}
+.purple-green{
+	$primary: mat-palette($mat-purple, 700, 500, 800);
+	$accent:  mat-palette($mat-green, A200, A100, A400);
+	$theme: mat-dark-theme($primary, $accent);
+	@include angular-material-theme($theme);
+	.accentColor{
+		color:var(--purple-green);
+	}
+}
+html {
+    overflow: scroll;
+	overflow-x: hidden;
+	font-family: 'Roboto', sans-serif;
+
+	
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */	
+}
+::-webkit-scrollbar {
+    width: 0px; 
+    background: transparent;  
+}
+::-webkit-scrollbar-thumb {
+    background:transparent;
+}
+::-webkit-scrollbar-thumb {
+    background:transparent;
+}
+.appSidebar{
+
+	.mat-list-item-content{
+		padding-left:8px!important;
+	}
+}

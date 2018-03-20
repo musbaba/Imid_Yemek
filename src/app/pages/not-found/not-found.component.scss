@@ -1,0 +1,63 @@
+#scene{
+	position:absolute;
+	left:-0px;
+	top:-0px;
+	bottom:-0px;
+	right:-0px;
+	overflow:hidden;
+	z-index: -1;
+}
+.wall{
+	opacity: 0.9;
+	width:140%;
+	height:140%;
+	margin-left:-20%;
+	margin-top:-20%;
+	text-align: center;	
+	background: url('/assets/images/board.png');
+	background-position: center center;
+	background-size: cover;
+	&.w2{
+
+	margin-left:-25%;
+	margin-top:-25%;
+	}
+}
+#notFound{
+
+	position:absolute;
+	left:-0px;
+	top:56px;
+	bottom:-0px;
+	right:-0px;
+	overflow:hidden;
+	z-index: 1;
+	padding-top:20%;
+	#wrapper{
+		position:absolute;
+		margin:auto;
+		width:100%;
+		padding:10px;
+		padding-top:5px;
+		bottom:0px;
+		&::after{
+			position:absolute;
+			content:" ";
+			left:0px;
+			top:0px;
+			bottom:0px;
+			right:0px;
+			background:white;
+			opacity:.8;
+			z-index:-1;
+		}
+	}
+	h1{
+		font-size:22px;
+		margin-bottom:4px;
+		margin-top:10px;
+	}
+	p{
+		margin:0px;
+	}
+}

@@ -1,0 +1,41 @@
+<mat-card>
+	<mat-list>
+		<mat-list-item *ngIf="oldPath!=''" (click)="goBackSettings()">
+			<i class="fa fa-arrow-left"></i>&nbsp;Geri
+		</mat-list-item>
+		<mat-list-item *ngFor="let item of settingsList" [ngClass]="{
+			itemTitle:item.type=='title',
+			itemText:item.type=='text',
+			itemCheckbox:item.type=='checkbox',
+			itemSub:item.type=='sub',
+			itemSelect:item.type=='select',
+			withDesc:item.desc!=undefined
+		}">
+			<div *ngIf="item.type=='title'" class="accentColor">{{item.title}}</div>
+			<mat-form-field *ngIf="item.type=='text'">
+				<input matInput [placeholder]="item.label" (change)="valueChange(item.path,$event.target.value)" [value]="item.value || item.default">
+			</mat-form-field>
+
+			<ng-container *ngIf="item.type=='checkbox'">
+				<div class="checkboxLabel" (change)="valueChange(item.path,!item.value)">
+					{{item.label}}
+					<br/>
+					<span>{{item.desc}}</span>
+				</div>
+				<mat-checkbox (change)="valueChange(item.path,$event.checked)" [checked]="item.value"></mat-checkbox>
+			</ng-container>
+			<div class="groupHeader accentColor" *ngIf="item.type=='sub'" (click)="loadSub(item.path)">{{item.title}}
+				<br/>
+				<span>{{item.desc}}</span>
+			</div>
+			<mat-form-field *ngIf="item.type=='select'">
+				<mat-select [placeholder]="item.label" [value]="item.value" (change)="valueChange(item.path,$event.value)">
+					<mat-option *ngFor="let option of item.options" [value]="option.value">{{option.label}}</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</mat-list-item>
+	</mat-list>
+
+
+
+</mat-card>

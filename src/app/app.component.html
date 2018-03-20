@@ -1,0 +1,56 @@
+<mat-drawer-container class="appContainer" autosize fullscreen [ngClass]="{
+	'indigo-pink':appTheme=='indigo-pink',
+	'pink-bluegrey':appTheme=='pink-bluegrey',
+	'deeppurple-amber':appTheme=='deeppurple-amber',
+	'purple-green':appTheme=='purple-green'
+}">
+	<mat-drawer #drawer class="appSidebar" mode="push">
+		<mat-toolbar color="primary">
+			<span>{{appTitle}}</span>
+		</mat-toolbar>
+		<div id="profileSection">
+			<div id="avatar" class="mat-elevation-z4">
+				<img src="assets/images/avatar.png" alt="">
+			</div>
+			<div id="name">
+				Mustafa Başıbüyük
+				<br/>
+				<span>musbaba@gmail.com
+					<i class="fa fa-caret-down"></i>
+				</span>
+			</div>
+		</div>
+		<mat-list>
+
+			<mat-list-item *ngFor="let item of menu" [class.hiddenMenuItem]="!(item.if == undefined || item.if()!=false)" [routerLink]="item.link"
+			 routerLinkActive="active" (click)="drawer.toggle()">
+				<i [class]="'fa fa-fw fa-'+item.icon "></i> {{item.text}}
+			</mat-list-item>
+
+		</mat-list>
+		<mat-list class="last">
+			<mat-list-item routerLink="/helper/settings" routerLinkActive="active" (click)="drawer.toggle()">
+				<i class="fa fa-cog fa-fw "></i> Ayarlar</mat-list-item>
+			<mat-list-item>
+				<i class="fa fa-share fa-fw "></i>Paylaş </mat-list-item>
+		</mat-list>
+		<div class="themeSelect">
+			<div theme="indigo-pink" (click)="setTheme($event)"></div>
+			<div theme="pink-bluegrey" (click)="setTheme($event)"></div>
+			<div theme="deeppurple-amber" (click)="setTheme($event)"></div>
+			<div theme="purple-green" (click)="setTheme($event)"></div>
+		</div>
+	</mat-drawer>
+
+	<div class="appContent">
+		<mat-toolbar color="primary" class="appToolbar" [class.mat-elevation-z2]="isScrolled">
+			<button class="sideMenuOpener" mat-raised-button type="button" color="primary" mat-button (click)="drawer.toggle()">
+				<i class="fa fa-bars"></i>
+			</button>
+			<span>{{appTitle}}</span>
+
+		</mat-toolbar>
+		<router-outlet></router-outlet>
+	</div>
+
+</mat-drawer-container>
