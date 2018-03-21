@@ -3,15 +3,17 @@ import { CommonModule } from '@angular/common';
 import { SettingsService } from './settings.service'
 import { UsersService } from './users.service';
 import { MessageService } from './message.service';
+import { TanimlarService } from './tanimlar.service';
 
 @NgModule({
 	imports: [
-		CommonModule,
+		CommonModule
 	],
 	declarations: [],
 	providers:[
 		SettingsService,
 		UsersService
 	]
+
 })
 export class CoreModule { }

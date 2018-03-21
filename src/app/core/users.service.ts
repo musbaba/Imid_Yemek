@@ -13,7 +13,7 @@ export class UsersService {
   constructor(private http:HttpClient) { }
 
   private userUrl='http://localhost:63706/users';
-
+  
 
   getUsers(): Observable<User[]> {
 
@@ -33,24 +33,7 @@ export class UsersService {
       );
   }
 
-  findUsers(
-    userId:number, filter = '', sortOrder = 'asc',
-    pageNumber = 0, pageSize = 3):  Observable<User[]> {
-
-    return this.http.get('/users', {
-        params: new HttpParams()
-            .set('userId', userId.toString())
-            .set('filter', filter)
-            .set('sortOrder', sortOrder)
-            .set('pageNumber', pageNumber.toString())
-            .set('pageSize', pageSize.toString())
-    }).pipe(
-        map(res =>  res["payload"])
-    );
-  }
-
-
-  private handleError<T> (operation = 'operation', result?: T) {
+  public handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
@@ -64,8 +47,9 @@ export class UsersService {
     };
   }
 
-  /** Log a HeroService message with the MessageService */
-  private log(message: string) {
-    //this.messageService.add('UserService: ' + message);
-  }
+
+/** Log a HeroService message with the MessageService */
+public log(message: string) {
+//this.messageService.add('UserService: ' + message);
+}
 }

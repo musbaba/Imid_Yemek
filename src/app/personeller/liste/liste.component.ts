@@ -12,7 +12,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 export class ListeComponent implements AfterViewInit  {
 
   displayedColumns = [  'tcNo','kimlik','butonlar'];
-  selection = new SelectionModel<Element>(true, []);
+  selection = new SelectionModel<User>(true, []);
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

@@ -13,6 +13,7 @@ import { PersonelModule } from './personeller/personel.module';
 import { UsersService } from './core/users.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppConfig } from './app.config';
+import { TanimlarService } from './core/tanimlar.service';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { AppConfig } from './app.config';
     
   ],
   imports: [
-    HttpClientModule,
+  HttpClientModule,
 	BrowserModule,
 	BrowserAnimationsModule,
 	MaterialModule,
@@ -30,6 +31,9 @@ import { AppConfig } from './app.config';
   routing,
   PersonelModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers:[
+		TanimlarService
+	]
 })
 export class AppModule { }
