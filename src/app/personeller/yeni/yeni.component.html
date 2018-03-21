@@ -1,38 +1,43 @@
 <div class="example-container">
 
   <mat-form-field>
-    <input matInput placeholder="Personel Adı">
+    
+    <input matInput placeholder="First Name"  name="adi" [(ngModel)]="model.adi" #adi="ngModel">
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Personel Soyadı">
+    <input matInput placeholder="Personel Soyadı"  name="soyadi" [(ngModel)]="model.soyadi" #soyadi="ngModel">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-      <input matInput #tcNo maxlength="11" placeholder="TC Kimlik No" >
-      <mat-hint align="end">{{tcNo}} / 11</mat-hint>
+      <input matInput #tcNo maxlength="11" placeholder="TC Kimlik No"  name="tcNo" [(ngModel)]="model.tcNo" #tcNo="ngModel">
+      <mat-hint align="end">{{tcNo.value.length}} / 11</mat-hint>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-        <input matInput #sicilNo maxlength="5" placeholder="TC Kimlik No" >
-        <mat-hint align="end">{{sicilNo}} / 5</mat-hint>
+        <input matInput #sicilNo maxlength="5" placeholder="Sicil No"  name="sicilNo" [(ngModel)]="model.sicilNo" #sicilNo="ngModel">
+        <mat-hint align="end">{{sicilNo.value.length}} / 5</mat-hint>
       </mat-form-field>
 
 
   <mat-form-field>
-        <mat-select placeholder="Birim Seçiniz">
-            <mat-option *ngFor="let birim of birimler" [value]="birim.BirimID">
-              {{ birim.BirimAdi }}
+        <mat-select placeholder="Birim Seçiniz"  name="birimId" [(ngModel)]="model.birimId" #birimId="ngModel">
+            <mat-option *ngFor="let birim of birimler" [value]="birim.birimID" >
+              {{ birim.birimAdi }}
             </mat-option>
       </mat-select>
     </mat-form-field>
 
 
     <mat-form-field>
-          <mat-select placeholder="Unvan Seçiniz">
-              <mat-option *ngFor="let unvan of unvanlar" [value]="unvan.UnvanId">
-                {{ unvan.UnvanAdi }}
+          <mat-select placeholder="Unvan Seçiniz"  name="unvanId" [(ngModel)]="model.unvanId" #unvanId="ngModel">
+              <mat-option *ngFor="let unvan of unvanlar" [value]="unvan.unvanID" >
+                {{ unvan.unvanAdi }}
               </mat-option>
         </mat-select>
       </mat-form-field>
-  
+    
+
+    
+          <button mat-raised-button color="warn" (click)="createuser()">Personeli Kaydet</button>
+    
 </div>

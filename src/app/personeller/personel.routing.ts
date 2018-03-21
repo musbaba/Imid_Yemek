@@ -7,7 +7,8 @@ import { GuncelleComponent } from './guncelle/guncelle.component';
 const appRoutes: Routes = [
     { path: 'liste', component: ListeComponent },
     { path: 'yeni', component: YeniComponent },
-    { path: 'guncelle', component: GuncelleComponent }
+    { path: 'guncelle', component: GuncelleComponent },
+    
 
 ];
 

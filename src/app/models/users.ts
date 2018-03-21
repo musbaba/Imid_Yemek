@@ -6,5 +6,7 @@ export class User {
     soyadi: string;
     tcNo: string;
     sicilNo: string;
+    birimId:number;
+    unvanId:number;
   }
   

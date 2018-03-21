@@ -13,6 +13,7 @@ import { CoreModule } from '../core/core.module';
     CommonModule,
     MaterialModule,
     CoreModule,
+    FormsModule,
 		routing
   ],
   declarations: [ListeComponent, YeniComponent, GuncelleComponent]

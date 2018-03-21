@@ -1,9 +1,12 @@
 /* Structure */
+
+
 .example-container {
   display: flex;
   flex-direction: column;
-  min-width: 300px;
+  
 }
+
 
 .example-header {
   min-height: 64px;
@@ -15,11 +18,11 @@
   width: 50%;
 }
 
-.mat-table {
-  overflow: auto;
-  max-height: 300px;
+.example-card {
+  max-width: 400px;
 }
 
-.mat-column-select {
-  overflow: visible;
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
 }

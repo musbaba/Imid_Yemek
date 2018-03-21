@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Unvan, Birim } from '../models/tanimtablolari';
 import { tap, catchError } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs/observable/of';
+import { Unvan } from '../models/unvan';
+import { Birim } from '../models/birim';
 
 @Injectable()
 export class TanimlarService {
 
-  private apiUrl='http://localhost:63706/users';    
+  private apiUrl='http://localhost:63706/';    
 
   constructor(private http:HttpClient) { }
 
   getUnvanlar(): Observable<Unvan[]> {
 
-    return this.http.get<Unvan[]>(this.apiUrl)
+  console.log('uu');
+    return this.http.get<Unvan[]>(this.apiUrl+"unvans")
     .pipe(
       tap(users =>this.log(`fetched unvanlar`)),
       catchError(this.handleError('getUnvanlar', []))
@@ -25,7 +27,8 @@ export class TanimlarService {
 
   getBirimler(): Observable<Birim[]> {
 
-    return this.http.get<Birim[]>(this.apiUrl)
+    console.log('BB');
+    return this.http.get<Birim[]>(this.apiUrl+"birims")
     .pipe(
       tap(users => this.log(`fetched birimler`)),
       catchError(this.handleError('getBirimler', []))

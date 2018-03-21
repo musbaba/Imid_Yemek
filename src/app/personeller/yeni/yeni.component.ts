@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { TanimlarService } from '../../core/tanimlar.service';
-import { Birim, Unvan } from '../../models/tanimtablolari';
 import { MatTableDataSource } from '@angular/material';
+import { Birim } from '../../models/birim';
+import { Unvan } from '../../models/unvan';
+import { UsersService } from '../../core/users.service';
+import { Router } from '@angular/router';
+import { User } from '../../models/users';
 
 @Component({
   selector: 'app-yeni',
@@ -10,23 +14,32 @@ import { MatTableDataSource } from '@angular/material';
 })
 export class YeniComponent implements OnInit {
 
+  model : any={};
   birimler : Birim[];
-  unvanlar:Unvan[];
-  constructor(private tanimService:TanimlarService) { }
+  unvanlar : Unvan[];
+  constructor(private tanimService:TanimlarService,
+              private userService:UsersService,            
+              private router: Router) { }
 
   ngOnInit() {
-
-    console.log('Birimler');
     this.tanimService.getBirimler().subscribe(data => {
       this.birimler = data;
-      console.log(data);
     });
 
-    console.log('Unvanlar');
     this.tanimService.getUnvanlar().subscribe(data => {
       this.unvanlar = data;
-      console.log(data);
     });
   }
 
+  createuser() {
+    console.log(this.model);
+    this.userService.createUser(this.model)
+        .subscribe(
+            data => {
+                this.router.navigate(['/personel/liste']);
+            },
+            error => {
+                //this.loading = false;
+            });
+  }
 }
