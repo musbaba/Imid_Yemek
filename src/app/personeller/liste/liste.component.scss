@@ -7,7 +7,9 @@
   
 }
 
-
+.example-button{
+  width: 200px;
+}
 .example-header {
   min-height: 64px;
   padding: 8px 24px 0;
@@ -19,10 +21,6 @@
 }
 
 .example-card {
-  max-width: 400px;
+  width: 100%;
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}

@@ -8,81 +8,82 @@
         </mat-form-field>
             
       </div>
-      <button mat-raised-button color="primary" (click)="yeniKullanici()" value="Yeni Kullanıcı Kaydet">Yeni Kullanıcı Ekle </button>
-
-  <mat-table #table [dataSource]="dataSource">
-  <!-- Tc Kimlik No -->
-  <ng-container matColumnDef="tcNo">
-      <mat-header-cell *matHeaderCellDef> TC Kimlik No </mat-header-cell>
-      <mat-cell *matCellDef="let user"> {{user.tcNo}} </mat-cell>
-      </ng-container>
-
-      
-  <!-- Adı -->
-  <ng-container matColumnDef="kimlik">
-  <mat-header-cell *matHeaderCellDef> Adı Soyadı (Sicil No) </mat-header-cell>
-  <mat-cell *matCellDef="let user"> {{user.adi}} {{user.soyadi}} ({{user.sicilNo}}) </mat-cell>
-  </ng-container>
-
-
-
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="sicilNo">
-    <mat-header-cell *matHeaderCellDef> Sicil No </mat-header-cell>
-    <mat-cell *matCellDef="let user"> {{user.sicilNo}} </mat-cell>
-  </ng-container>
-
-   <!-- Weight Column -->
-   <ng-container matColumnDef="butonlar">
-      <mat-header-cell *matHeaderCellDef> Kullanıcı Seç </mat-header-cell>
-      <mat-cell *matCellDef="let user">
-          <button mat-raised-button color="primary" (click)="onSelect(row)" value="Yeni Kullanıcı Kaydet"><i class="fas fa-users"></i></button>
-         </mat-cell>
-    </ng-container>
-
-
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"  (click)="onSelect(row)"></mat-row>
-</mat-table>
-<div>
-    <mat-table #table [dataSource]="selectedUser">
-        <!-- Tc Kimlik No -->
-        <ng-container matColumnDef="tcNo">
-            <mat-header-cell *matHeaderCellDef> TC Kimlik No </mat-header-cell>
-            <mat-cell *matCellDef="let user"> {{user.tcNo}} </mat-cell>
-            </ng-container>
-      
-            
-        <!-- Adı -->
-        <ng-container matColumnDef="kimlik">
-        <mat-header-cell *matHeaderCellDef> Adı Soyadı (Sicil No) </mat-header-cell>
-        <mat-cell *matCellDef="let user"> {{user.adi}} {{user.soyadi}} ({{user.sicilNo}}) </mat-cell>
-        </ng-container>
-      
-      
-      
-      
-        <!-- Weight Column -->
-        <ng-container matColumnDef="sicilNo">
-          <mat-header-cell *matHeaderCellDef> Sicil No </mat-header-cell>
-          <mat-cell *matCellDef="let user"> {{user.sicilNo}} </mat-cell>
-        </ng-container>
-      
-         <!-- Weight Column -->
-         <ng-container matColumnDef="butonlar">
-            <mat-header-cell *matHeaderCellDef> Kullanıcı Seç </mat-header-cell>
-            <mat-cell *matCellDef="let user">
-                <button mat-raised-button color="primary" value="Yeni Kullanıcı Kaydet"><i class="fas fa-users"></i></button>
-               </mat-cell>
-          </ng-container>
-      
-      
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
-      </mat-table>
-</div>
-
-
+      <button class="example-button" mat-raised-button color="primary"  (click)="yeniKullanici()" value="Yeni Kullanıcı Kaydet">Yeni Kullanıcı Ekle </button>
 
   
+
+  <mat-table #table [dataSource]="dataSource">
+      <!-- Tc Kimlik No -->
+      <ng-container matColumnDef="tcNo">
+          <mat-header-cell *matHeaderCellDef> TC Kimlik No </mat-header-cell>
+          <mat-cell *matCellDef="let user"> {{user.tcNo}} </mat-cell>
+          </ng-container>
+    
+          
+      <!-- Adı -->
+      <ng-container matColumnDef="kimlik">
+      <mat-header-cell *matHeaderCellDef> Adı Soyadı (Sicil No) </mat-header-cell>
+      <mat-cell *matCellDef="let user"> {{user.adi}} {{user.soyadi}} ({{user.sicilNo}}) </mat-cell>
+      </ng-container>
+    
+    
+    
+    
+      <!-- Weight Column -->
+      <ng-container matColumnDef="sicilNo">
+        <mat-header-cell *matHeaderCellDef> Sicil No </mat-header-cell>
+        <mat-cell *matCellDef="let user"> {{user.sicilNo}} </mat-cell>
+      </ng-container>
+    
+       <!-- Weight Column -->
+       <ng-container matColumnDef="butonlar">
+          <mat-header-cell *matHeaderCellDef> Kullanıcı Seç </mat-header-cell>
+          <mat-cell *matCellDef="let user">
+              <button mat-raised-button color="primary" (click)="onSelect(user)" value="Yeni Kullanıcı Kaydet"><i class="fas fa-users"></i></button>
+             </mat-cell>
+        </ng-container>
+    
+    
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;" ></mat-row>
+    </mat-table>
+
+    <br/>
+    <mat-divider></mat-divider>
+
+<div *ngIf="selectedHero" visibled>
+    <button mat-raised-button color="primary" value="Bilgiler" class="example-button">Yemek/Çay Fişi </button>
+
+    <mat-card class="example-card" *ngIf="selectedHero">
+        <mat-card-header>
+          <mat-card-title>{{selectedHero.adi}} - {{selectedHero.soyadi}}  
+          ( {{selectedHero.tcNo}} / {{selectedHero.sicilNo}})</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-table #table [dataSource]="ticketDataSource">
+          
+
+                 <!--  Fiş Alış Tarihi -->
+                 <ng-container matColumnDef="tarih">
+                    <mat-header-cell *matHeaderCellDef> Fiş Alış Tarihi </mat-header-cell>
+                    <mat-cell *matCellDef="let ticket"> {{ticket.ticketDate |   date: 'dd.MM.yyyy'}} </mat-cell>
+                    </ng-container>
+
+                <!--Ücret -->
+                <ng-container matColumnDef="ucret">
+                    <mat-header-cell *matHeaderCellDef>Ödenen Ücret </mat-header-cell>
+                    <mat-cell *matCellDef="let ticket"> {{ticket.ucret}} TL</mat-cell>
+                    </ng-container>
+                
+              
+                <mat-header-row *matHeaderRowDef="fisColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: fisColumns;" ></mat-row>
+              </mat-table>
+        </mat-card-content>
+        <mat-card-actions>
+          <button  mat-raised-button color="accent">ÇAY FİŞİ SAT</button>
+          <button mat-raised-button color="warn" >YEMEK FİŞİ SAT</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    

@@ -7,6 +7,8 @@ import { routing } from './personel.routing';
 import { MaterialModule } from '../material/material.module';
 import { FormsModule } from '@angular/forms';
 import { CoreModule } from '../core/core.module';
+import { DetayComponent } from './detay/detay.component';
+import { UsermealticketService } from '../core/usermealticket.service';
 
 @NgModule({
   imports: [
@@ -16,7 +18,8 @@ import { CoreModule } from '../core/core.module';
     FormsModule,
 		routing
   ],
-  declarations: [ListeComponent, YeniComponent, GuncelleComponent]
+  declarations: [ListeComponent, YeniComponent, GuncelleComponent, DetayComponent],
+  providers:[UsermealticketService]
   
 })
 export class PersonelModule { }

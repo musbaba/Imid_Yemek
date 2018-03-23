@@ -14,6 +14,7 @@ import { UsersService } from './core/users.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppConfig } from './app.config';
 import { TanimlarService } from './core/tanimlar.service';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { TanimlarService } from './core/tanimlar.service';
 	MaterialModule,
 	RouterModule,
   routing,
-  PersonelModule
+  PersonelModule,FormsModule
   ],
   bootstrap: [AppComponent],
   providers:[

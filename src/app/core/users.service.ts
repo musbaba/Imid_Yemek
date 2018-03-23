@@ -6,7 +6,8 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 import { User } from '../models/users';
 import { MessageService } from '../core/message.service';
-
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -28,10 +29,21 @@ export class UsersService {
         catchError(this.handleError('getUsers', []))
       );
   }
-  
+   getAllUsers(): Observable<any> {
+
+    return this.http.get(this.userUrl)
+    .map(res=>res)
+    .catch((error:any)=>Observable.throw('Server Error'));
+
+  }
+
 
   findUserById(id: number): Observable<User[]> {
-    return this.http.get<User[]>(`${this.userUrl}/${id}`);
+    
+    return this.http.get<User[]>(`${this.userUrl}/${id}`)
+    .map(res=>{
+      return res;
+    });
 }
 
  /** POST: add a new hero to the server */
